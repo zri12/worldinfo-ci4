@@ -1,0 +1,308 @@
+/* ==========================================================================
+   WorldInfo – responsive.css
+   Aturan CSS untuk responsivitas dan tampilan mobile.
+   ========================================================================== */
+
+/* ============================================================
+   BREAKPOINTS REFERENCE (Bootstrap 5):
+   xs:  < 576px
+   sm:  >= 576px
+   md:  >= 768px
+   lg:  >= 992px
+   xl:  >= 1200px
+   ============================================================ */
+
+/* ============================================================
+   1. SIDEBAR RESPONSIVE
+   ============================================================ */
+
+/* Mobile: sembunyikan sidebar secara default */
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 1050;
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    /* Overlay backdrop saat sidebar terbuka di mobile */
+    .sidebar-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1040;
+        backdrop-filter: blur(2px);
+    }
+}
+
+/* Tablet: sidebar bisa collapse */
+@media (min-width: 992px) {
+    .wrapper.sidebar-collapsed .sidebar {
+        width: 68px;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .brand-text,
+    .wrapper.sidebar-collapsed .sidebar .sidebar-link span,
+    .wrapper.sidebar-collapsed .sidebar .sidebar-divider-label,
+    .wrapper.sidebar-collapsed .sidebar .user-details {
+        display: none;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .brand-icon {
+        margin: 0 auto;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .brand-link {
+        justify-content: center;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .sidebar-link {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .sidebar-link i {
+        font-size: 18px;
+        width: auto;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .sidebar-footer {
+        justify-content: center;
+    }
+
+    .wrapper.sidebar-collapsed .sidebar .user-info {
+        justify-content: center;
+    }
+
+    .wrapper.sidebar-collapsed .main-content {
+        margin-left: 68px;
+    }
+}
+
+/* ============================================================
+   2. TOPBAR RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 575.98px) {
+    .topbar {
+        padding: 0 14px;
+    }
+
+    .topbar-title {
+        font-size: 15px;
+    }
+
+    .user-dropdown .user-info-sm {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   3. PAGE CONTENT RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .page-content {
+        padding: 16px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .page-header-title {
+        font-size: 17px;
+    }
+}
+
+/* ============================================================
+   4. STAT CARDS – DASHBOARD
+   ============================================================ */
+
+@media (max-width: 575.98px) {
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+}
+
+/* ============================================================
+   5. COUNTRY CARDS – GRID
+   ============================================================ */
+
+/* Desktop: 4 per row */
+@media (min-width: 1200px) {
+    .country-grid .col { flex: 0 0 25%; max-width: 25%; }
+}
+
+/* Laptop: 3 per row */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .country-flag-wrapper {
+        height: 140px;
+    }
+}
+
+/* Tablet: 2 per row (Bootstrap default col-md-6) */
+@media (max-width: 767.98px) {
+    .country-flag-wrapper {
+        height: 130px;
+    }
+
+    .country-card-actions {
+        flex-direction: column;
+    }
+
+    .country-card-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 575.98px) {
+    .country-flag-wrapper {
+        height: 120px;
+    }
+}
+
+/* ============================================================
+   6. TABLE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .table-modern {
+        border-radius: 8px;
+    }
+
+    .table-modern thead th {
+        font-size: 11px;
+        padding: 10px 12px;
+    }
+
+    .table-modern tbody td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* Stack aksi tombol di mobile */
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .action-buttons .btn {
+        font-size: 11.5px;
+    }
+}
+
+/* ============================================================
+   7. FORM RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 575.98px) {
+    .form-row-custom {
+        flex-direction: column;
+    }
+
+    .modal-dialog {
+        margin: 10px;
+    }
+}
+
+/* ============================================================
+   8. COUNTRY DETAIL PAGE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .flag-detail {
+        max-width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   9. LANDING PAGE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .hero-section {
+        padding: 60px 0;
+    }
+
+    .feature-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* ============================================================
+   10. ADMIN FOOTER RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================================
+   11. LOGIN PAGE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 575.98px) {
+    .login-card {
+        margin: 20px;
+        border-radius: 12px;
+    }
+
+    .login-logo {
+        font-size: 40px;
+    }
+}
+
+/* ============================================================
+   12. SEARCH & FILTER BAR RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767.98px) {
+    .filter-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filter-bar .form-select,
+    .filter-bar .form-control {
+        width: 100% !important;
+    }
+}
