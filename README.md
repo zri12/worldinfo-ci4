@@ -1,4 +1,4 @@
-# WorldInfo
+# WorldinfoCI
 
 **Website Informasi Negara Dunia berbasis CodeIgniter 4**
 
