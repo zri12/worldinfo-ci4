@@ -1,253 +1,156 @@
-# WorldinfoCI
+# WorldInfo CI4
 
-**Website Informasi Negara Dunia berbasis CodeIgniter 4**
+Project ini dibuat untuk tugas besar mata kuliah Teknik Web. Aplikasi ini berisi informasi negara-negara di dunia dengan data dari REST Countries API, lalu ditampilkan memakai CodeIgniter 4.
 
----
+Saya membuat aplikasi ini supaya user bisa melihat daftar negara, detail negara, dan admin bisa mengelola beberapa data pendukung lewat dashboard.
 
-## Deskripsi Project
+## Fitur
 
-WorldInfo adalah website informasi negara dunia yang menampilkan data lengkap mengenai negara-negara di seluruh dunia secara real-time. Data negara diambil dari **REST Countries Public API** dan disajikan dalam tampilan modern, responsif, dan mudah digunakan.
+- Halaman daftar negara dari API
+- Detail negara seperti bendera, ibu kota, populasi, bahasa, mata uang, timezone, dan link Google Maps
+- Login admin sederhana
+- Dashboard admin
+- CRUD data negara yang dikelola di database
+- Pengaturan API untuk menyimpan endpoint yang digunakan aplikasi
 
-WorldInfo dilengkapi fitur CRUD untuk mengelola daftar negara favorit/wishlist, serta fitur pengaturan API yang memungkinkan pengguna mengelola endpoint API yang digunakan.
+## Teknologi yang Dipakai
 
----
-
-## Tech Stack
-
-| Kategori        | Teknologi              |
-|-----------------|------------------------|
-| Backend         | CodeIgniter 4, PHP 8+  |
-| Frontend        | Bootstrap 5, CSS, JS   |
-| Database        | MySQL / MariaDB        |
-| API             | REST Countries API     |
-| HTTP Client     | CURLRequest (CI4)      |
-| Local Server    | XAMPP / Laragon        |
-| DB Management   | phpMyAdmin             |
-| Version Control | Git / GitHub           |
-
----
-
-## Fitur Utama
-
-- 🌍 **Daftar Negara** – Tampilkan semua negara dari REST Countries API dengan search dan filter region
-- 🔎 **Detail Negara** – Informasi lengkap: bendera, ibu kota, populasi, bahasa, mata uang, timezone, Google Maps
-- ❤️ **Favorit / Wishlist** – CRUD daftar negara favorit dengan status dan catatan pribadi
-- ⚙️ **Pengaturan API** – Kelola endpoint API, test koneksi, dan sinkronisasi data
-- 📊 **Dashboard** – Ringkasan statistik total negara, favorit, dan status API
-- 🔐 **Autentikasi** – Login admin sederhana untuk mengakses fitur admin
-
----
-
-## Cara Instalasi
-
-### Prasyarat
-- PHP 8.1+
-- Composer
+- CodeIgniter 4
+- PHP
 - MySQL / MariaDB
-- XAMPP / Laragon
-- Git
+- Bootstrap
+- REST Countries API
+- XAMPP
+- Git dan GitHub
 
-### Langkah Instalasi
+## Kebutuhan
 
-**1. Clone repository:**
+Sebelum menjalankan project, pastikan sudah tersedia:
+
+- PHP minimal 8.1
+- Composer
+- MySQL atau MariaDB
+- XAMPP atau Laragon
+
+## Cara Menjalankan
+
+1. Clone repository:
+
 ```bash
-git clone https://github.com/username/worldinfo.git
-cd worldinfo
+git clone https://github.com/zri12/worldinfo-ci4.git
+cd worldinfo-ci4
 ```
 
-**2. Install dependensi CodeIgniter 4:**
+2. Install dependency:
+
 ```bash
 composer install
 ```
 
-**3. Copy file environment:**
+3. Buat file `.env` dari file `env`:
+
+```bash
+copy env .env
+```
+
+Kalau memakai Git Bash atau terminal Linux:
+
 ```bash
 cp env .env
 ```
 
-**4. Edit file `.env`:**
+4. Ubah konfigurasi database di file `.env`:
+
 ```env
 CI_ENVIRONMENT = development
 
 database.default.hostname = localhost
 database.default.database = worldinfo_db
 database.default.username = root
-database.default.password = 
+database.default.password = ''
 database.default.DBDriver = MySQLi
-database.default.port     = 3306
+database.default.port = 3306
 ```
 
-**5. Buat database:**
-Buka phpMyAdmin dan buat database baru:
+5. Buat database baru di phpMyAdmin dengan nama:
+
 ```sql
-CREATE DATABASE worldinfo_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE worldinfo_db;
 ```
 
----
+6. Jalankan migration:
 
-## Cara Setup Database
-
-**1. Jalankan Migration:**
 ```bash
 php spark migrate
 ```
 
-**2. Jalankan Seeder:**
+7. Jalankan seeder:
+
 ```bash
-php spark db:seed ApiSettingSeeder
 php spark db:seed UserSeeder
+php spark db:seed ApiSettingSeeder
 ```
 
-Atau jalankan semua seeder sekaligus:
-```bash
-php spark db:seed DatabaseSeeder
-```
+8. Jalankan aplikasi:
 
----
-
-## Cara Menjalankan Project
-
-**1. Via XAMPP:**
-- Tempatkan folder project di `C:/xampp/htdocs/worldinfo`
-- Akses via browser: `http://localhost/worldinfo/public`
-
-**2. Via PHP Built-in Server:**
 ```bash
 php spark serve
 ```
-Akses via browser: `http://localhost:8080`
 
-**3. Via Laragon:**
-- Tempatkan folder di `C:/laragon/www/worldinfo`
-- Akses via: `http://worldinfo.test`
+Setelah itu buka:
 
----
-
-## Akun Default
-
-Setelah menjalankan seeder, akun admin default tersedia:
-
-| Field    | Value                   |
-|----------|-------------------------|
-| Email    | admin@worldinfo.test    |
-| Password | admin123                |
-| Role     | admin                   |
-
-> ⚠️ **Ganti password admin setelah instalasi pertama!**
-
----
-
-## API yang Digunakan
-
-| Nama API           | URL                               | Keterangan           |
-|--------------------|-----------------------------------|----------------------|
-| REST Countries API | https://restcountries.com/v3.1/   | Public API, gratis   |
-
-Endpoint utama:
-- **Semua Negara:** `https://restcountries.com/v3.1/all`
-- **Detail Negara:** `https://restcountries.com/v3.1/name/{name}`
-
----
-
-## Struktur Folder
-
-```
-worldinfo/
-├── app/
-│   ├── Controllers/        ← Logika request-response
-│   ├── Models/             ← Akses database
-│   ├── Views/              ← Template HTML
-│   │   ├── layouts/        ← Layout master
-│   │   ├── partials/       ← Komponen reusable
-│   │   ├── dashboard/
-│   │   ├── countries/
-│   │   ├── favorites/
-│   │   ├── api_settings/
-│   │   ├── about/
-│   │   ├── auth/
-│   │   └── landing/
-│   ├── Database/
-│   │   ├── Migrations/     ← Definisi tabel
-│   │   └── Seeds/          ← Data awal
-│   └── Config/
-│       └── Routes.php
-│
-├── public/
-│   └── assets/
-│       ├── css/            ← Stylesheet custom
-│       ├── js/             ← JavaScript custom
-│       └── img/            ← Gambar statis
-│
-├── docs/                   ← Dokumentasi project
-└── README.md
+```text
+http://localhost:8080
 ```
 
----
+Jika memakai XAMPP tanpa `php spark serve`, project bisa diletakkan di folder `htdocs`, lalu dibuka melalui:
 
-## Perintah Spark yang Berguna
-
-```bash
-# Jalankan server development
-php spark serve
-
-# Buat controller baru
-php spark make:controller NamaController
-
-# Buat model baru
-php spark make:model NamaModel
-
-# Buat migration baru
-php spark make:migration CreateNamaTabel
-
-# Jalankan migration
-php spark migrate
-
-# Rollback migration
-php spark migrate:rollback
-
-# Jalankan seeder
-php spark db:seed NamaSeeder
-
-# Cek route yang terdaftar
-php spark routes
+```text
+http://localhost/nama-folder-project/public
 ```
 
----
+## Akun Admin
 
-## Dokumentasi Lengkap
+Akun admin default akan tersedia setelah menjalankan `UserSeeder`.
 
-Lihat folder `docs/` untuk dokumentasi lengkap:
+```text
+Email    : admin@worldinfo.test
+Password : admin123
+Role     : admin
+```
 
-| File                          | Isi                               |
-|-------------------------------|-----------------------------------|
-| `01-project-overview.md`      | Gambaran umum project             |
-| `02-tech-stack.md`            | Teknologi yang digunakan          |
-| `03-ui-design-guideline.md`   | Panduan desain UI                 |
-| `04-page-structure.md`        | Struktur halaman                  |
-| `05-feature-requirement.md`   | Kebutuhan fitur                   |
-| `06-database-design.md`       | Rancangan database                |
-| `07-api-integration.md`       | Dokumentasi integrasi API         |
-| `08-crud-flow.md`             | Alur CRUD                         |
-| `09-ci4-folder-structure.md`  | Penjelasan struktur folder CI4    |
-| `10-development-rules.md`     | Aturan pengembangan               |
-| `11-reference-ui-mapping.md`  | Mapping referensi UI TSX ke CI4   |
+## API
 
----
+Data negara diambil dari REST Countries API.
 
-## Kontribusi
+```text
+https://restcountries.com/v3.1/
+```
 
-1. Fork repository ini
-2. Buat branch fitur: `git checkout -b feature/nama-fitur`
-3. Commit perubahan: `git commit -m "feat: add feature description"`
-4. Push ke branch: `git push origin feature/nama-fitur`
-5. Buat Pull Request
+Contoh endpoint:
 
----
+```text
+https://restcountries.com/v3.1/all
+https://restcountries.com/v3.1/name/indonesia
+```
 
-## Lisensi
+## Struktur Singkat Project
 
-Project ini dibuat untuk keperluan **Tugas Besar Mata Kuliah Teknik Web – Semester 6**.
+```text
+app/
+  Controllers/       berisi controller aplikasi
+  Models/            berisi model untuk database
+  Views/             berisi tampilan halaman
+  Database/
+    Migrations/      struktur tabel
+    Seeds/           data awal aplikasi
 
----
+public/
+  assets/            file css, js, dan gambar
 
-*WorldInfo – Jelajahi Dunia Tanpa Batas* 🌍
+writable/            folder bawaan CodeIgniter untuk cache/log
+```
+
+## Catatan
+
+Project ini masih dibuat untuk kebutuhan tugas, jadi beberapa bagian masih sederhana. Fokus utama project adalah penerapan CodeIgniter 4, penggunaan database, proses CRUD, login admin, dan pengambilan data dari API.
