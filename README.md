@@ -1,6 +1,6 @@
 # WorldInfo CI4
 
-Project ini dibuat untuk tugas besar mata kuliah Teknik Web. Aplikasi ini berisi informasi negara-negara di dunia dengan data dari REST Countries API, lalu ditampilkan memakai CodeIgniter 4.
+Project ini dibuat untuk tugas besar mata kuliah Teknologi Web. Aplikasi ini berisi informasi negara-negara di dunia dengan data dari REST Countries API, lalu ditampilkan memakai CodeIgniter 4.
 
 Saya membuat aplikasi ini supaya user bisa melihat daftar negara, detail negara, dan admin bisa mengelola beberapa data pendukung lewat dashboard.
 
